@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import Firebase from 'firebase';
 import { Header } from './components/common';
-import LoginForm from './components/LoginForm'
+import LoginForm from './components/LoginForm';
+import firebaseapp from './firebaseinfo'
 
 class App extends Component {
   componentWillMount() {
     Firebase.initializeApp({
-      apiKey: 'AIzaSyBQD80iZT_n7ILuSAdz1eSccsHTSUo3Oz0',
-      authDomain: 'auth-328e2.firebaseapp.com',
-      databaseURL: 'https://auth-328e2.firebaseio.com',
-      projectId: 'auth-328e2',
-      storageBucket: 'auth-328e2.appspot.com',
-      messagingSenderId: '696798778342'
+      apiKey: firebaseapp().apiKey,
+      authDomain: firebaseapp().authDomain,
+      databaseURL: firebaseapp().databaseURL,
+      projectId: firebaseapp().projectId,
+      storageBucket: firebaseapp().storageBucket,
+      messagingSenderId: firebaseapp().messagingSenderId
     });
   }
 

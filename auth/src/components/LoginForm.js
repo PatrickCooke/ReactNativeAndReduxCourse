@@ -13,16 +13,18 @@ class LoginForm extends Component {
           label="Email"
           placeholder="username@mail.com"
           value={this.state.email}
-          onChangeText={text => this.setState({ email: text })}
+          onChangeText={email => this.setState({ email })}
+          // secureTextEntry={false} <<< don't need to include. When a prop is undefined, it is considered false
          />
         </CardSection>
+
         <CardSection>
           <Input 
           label="Password"
-          placeholder="ThisIsASecret"
+          placeholder="password"
           value={this.state.password}
-          onChangeText={text => this.setState({ password: text })}
-          
+          onChangeText={password => this.setState({ password })}  
+          secureTextEntry={true}
           />
         </CardSection>
         <CardSection>

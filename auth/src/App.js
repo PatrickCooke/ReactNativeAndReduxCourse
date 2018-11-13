@@ -3,17 +3,17 @@ import { View } from 'react-native';
 import Firebase from 'firebase';
 import { Header } from './components/common';
 import LoginForm from './components/LoginForm';
-import firebaseapp from './firebaseinfo'
+import FireBaseInfo from './FireBaseInfo'
 
 class App extends Component {
   componentWillMount() {
     Firebase.initializeApp({
-      apiKey: firebaseapp().apiKey,
-      authDomain: firebaseapp().authDomain,
-      databaseURL: firebaseapp().databaseURL,
-      projectId: firebaseapp().projectId,
-      storageBucket: firebaseapp().storageBucket,
-      messagingSenderId: firebaseapp().messagingSenderId
+      apiKey: FireBaseInfo.apiKey,
+      authDomain: FireBaseInfo.authDomain,
+      databaseURL: FireBaseInfo.databaseURL,
+      projectId: FireBaseInfo.projectId,
+      storageBucket: FireBaseInfo.storageBucket,
+      messagingSenderId: FireBaseInfo.messagingSenderId
     });
   }
 

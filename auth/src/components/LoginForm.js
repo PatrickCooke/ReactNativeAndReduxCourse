@@ -12,12 +12,29 @@ onButtonPress() {
   this.setState({ error: '', loading: true});
   
   firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(this.onLoginSuccess.bind(this))
     .catch(() => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(() =>{
-          this.setState({error:'Everything is terrible and nothing is ok, Authentication Failed'})
-        });
+        .then(this.onLoginSuccess.bind(this))
+        .catch(this.onLoginFail.bind(this));
     });
+}
+
+onLoginFail() {
+  this.setState({
+    password: '',
+    error:'Everything is terrible and nothing is ok, Authentication Failed',
+    loading: false
+  })
+}
+
+onLoginSuccess() {
+  this.setState({
+    email: '', 
+    password: '', 
+    loading: false,
+    error: ''
+  })
 }
 
 renderButton() {
@@ -26,10 +43,9 @@ renderButton() {
   } 
 
   return (
-    <Button
-          onPress={this.onButtonPress.bind(this)}>
-            Log in
-          </Button>
+    <Button onPress={this.onButtonPress.bind(this)}>
+      Log in
+    </Button>
   );
 }
 

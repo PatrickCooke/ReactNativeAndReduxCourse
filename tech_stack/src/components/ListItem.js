@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View, Alert } from 'react-native';
+import { Text, TouchableWithoutFeedback, View } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
@@ -7,25 +7,24 @@ import * as actions from '../actions';
 class ListItem extends Component {
 
   renderDescription() {
-    const { id, description } = this.props.library.item;
-    if (id === this.props.selectedLibrary) {
+    const { library, expanded } = this.props;
+    
+    if (expanded) {
       return (
         <CardSection>
-          <Text>{ description }</Text>
+          <Text>{ library.item.description }</Text>
         </CardSection>
       );
     }
   }
   
   render() {
-    console.log('props selectedLibrary? ');
     const { titleStyle } = styles;
     const { id, title/*, description*/ } = this.props.library.item;
 
     return (
       <TouchableWithoutFeedback 
       onPress={() => {
-        //Alert.alert('A little more this topic: ', description);
         this.props.selectLibrary(id);
       }}
       >
@@ -47,8 +46,10 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => {
-  return { selectedLibrary: state.selectedLibraryID };
+const mapStateToProps = (state, ownProps) => {
+  const expanded = state.selectedLibraryID === ownProps.library.item.id;
+  
+  return { expanded };
 };
 
 export default connect(mapStateToProps, actions)(ListItem);

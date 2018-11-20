@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Text, TouchableWithoutFeedback, View, LayoutAnimation } from 'react-native';
 import { connect } from 'react-redux';
 import { CardSection } from './common';
 import * as actions from '../actions';
 
 class ListItem extends Component {
+
+  componentWillUpdate() {
+    LayoutAnimation.spring();
+  }
 
   renderDescription() {
     const { library, expanded } = this.props;
@@ -12,7 +16,7 @@ class ListItem extends Component {
     if (expanded) {
       return (
         <CardSection>
-          <Text>{ library.item.description }</Text>
+          <Text style={{ flex: 1 }}>{ library.item.description }</Text>
         </CardSection>
       );
     }

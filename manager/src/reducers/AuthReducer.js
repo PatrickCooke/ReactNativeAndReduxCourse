@@ -5,7 +5,10 @@ import {
 
 const INITIAL_STATE = { 
   email: '',
-  password: ''
+  password: '',
+  loading: false,
+  error: '',
+  user: null
 };
 
 export default (state = INITIAL_STATE, action) => {

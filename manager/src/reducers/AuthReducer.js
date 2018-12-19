@@ -1,8 +1,8 @@
 import {EMAIL_CHANGED, LOGIN_USER, LOGIN_USER_FAIL, LOGIN_USER_SUCCESS, PASSWORD_CHANGED} from '../actions/types'
 
 const INITIAL_STATE = {
-    email: '',
-    password: '',
+    email: 'test@test.com',
+    password: 'password',
     loading: false,
     error: '',
     user: null
